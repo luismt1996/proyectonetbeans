@@ -1,0 +1,184 @@
+<!DOCTYPE html/* global submit */
+
+    /* global submit */
+
+    /* global submit */
+
+    >
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+
+        <link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap.css" type="text/css"/>
+        <link rel="stylesheet" href="view.css" type="text/css"/>
+        <script type="text/javascript" src="view.js"></script>
+
+
+        <title>Registro usuario</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript">
+
+            function comprobar() {
+                var usuario = document.formulario.usuario;
+                var contra = document.formulario.contra;
+                var vercontra = document.formulario.vercontra;
+                var tel = document.formulario.tel;
+                var cel = document.formulario.cel;
+
+
+                var aviso = document.getElementById("aviso");
+                aviso.innerHTML = "";
+                var enviar = "si";
+
+                if (usuario.value === "" || usuario.value.indexOf(" ") === 0) {
+                    var texto = "Es obligatorio introducir el usuario.<br/>"
+                    aviso.innerHTML += texto;
+                    //alert('Comprobo usuario');
+                    enviar = "no";
+                }
+                if (usuario.value.length >= 5) {
+                    enviar = "si"
+                }
+                else {
+                    texto = "El usuario debe tener más de 6 caracteres.<br/>"
+                    aviso.innerHTML += texto
+                }
+
+                if (contra.value === "" || contra.value.indexOf(" ") === 0) {
+                    var texto = "Es obligatorio introducir la contraseña.<br/>"
+                    aviso.innerHTML += texto;
+                    //alert('Comprobo contraseña');
+                    enviar = "no";
+                }
+                if (vercontra.value === "" || vercontra.value.indexOf(" ") === 0) {
+                    var texto = "Es obligatorio verificar la contraseña.<br/>"
+                    aviso.innerHTML += texto;
+                    //alert('Comprobo contraseña');
+                    enviar = "no";
+                }
+
+                if (contra.value === vercontra.value) {
+                    enviar = "si"
+                }
+                else {
+                    texto = "La contraseña y su repetición deben ser iguales.<br/>"
+                    aviso.innerHTML += texto
+                }
+                if (tel.value === "" || tel.value.indexOf(" ") === 0) {
+                    var texto = "Es obligatorio introducir el telefono.<br/>"
+                    aviso.innerHTML += texto;
+                    //alert('Comprobo tel');
+                    enviar = "no";
+                }
+
+                if (isNaN(tel.value)) {
+                    var texto = "Los valores del teléfono deben ser númericos.<br/>"
+                    aviso.innerHTML += texto;
+                    enviar = "no";
+                    return false;
+                }
+
+                if (cel.value === "" || cel.value.indexOf(" ") === 0) {
+                    var texto = "Es obligatorio introducir celular.<br/>"
+                    aviso.innerHTML += texto;
+                    //alert('Comprobo cel');
+                    enviar = "no";
+                }
+                if (isNaN(cel.value)) {
+                    var texto = "Los valores del celular deben ser númericos.<br/>"
+                    aviso.innerHTML += texto;
+                    enviar = "no";
+                    return false;
+                }
+                if (tel.value.length >= 5) {
+                    enviar = "si"
+                }
+                else {
+                    texto = "El usuario debe tener más de 7 caracteres.<br/>"
+                    aviso.innerHTML += texto
+                }
+                
+
+                if (enviar == "no") {
+                    return false;
+                }
+            }
+            function restaurar() {
+                var aviso = document.getElementById("aviso");
+                aviso.innerHTML = "";
+
+            }
+
+        </script>
+    </head>
+    <img id="top" src="top.png" alt="">
+    <div id="form_container">
+
+        <form name="formulario" method="POST"  class="appnitro" action="" onsubmit="return comprobar(this)" class="form-horizontal" role="form">
+
+            <div class="form_description">
+                <h2>Registro de usuarios</h2>
+                <p>Aquí puede registrar su usuario.</p>
+            </div>						
+            <ul>
+                <div class="form-group">
+                    <label for="mail" class="col-lg-2 control-label">Usuario</label>
+                    <div class="col-lg-10">
+                        <input type="usuario" class="form-control" name="usuario" onfocus="restaurar()"
+                               placeholder="Usuario....">
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="ejemplo_password_3" class="col-lg-2 control-label">Contraseña</label>
+                    <div class="col-lg-10">
+                        <input type="password" class="form-control" name="contra" onfocus="restaurar()"
+                               placeholder="Contraseña....">
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="ejemplo_password_3" class="col-lg-2 control-label">Verificar Contraseña</label>
+                    <div class="col-lg-10">
+                        <input type="password" class="form-control" name="vercontra" onfocus="restaurar()"
+                               placeholder="Introducir contraseña....">
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="telefono" class="col-lg-2 control-label">Teléfono</label>
+                    <div class="col-lg-10">
+                        <input type="" class="form-control" name="tel" onfocus="restaurar()"
+                               placeholder="Introducir teléfono....">
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="celular" class="col-lg-2 control-label">Celular</label>
+                    <div class="col-lg-10">
+                        <input type="" class="form-control" name="cel" onfocus="restaurar()"
+                               placeholder="Introducir celular....">
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" name="enviar" class="btn btn-success">Guardar</button>
+                    </div>
+                </div>
+        </form>
+
+
+        <p id="aviso"></p>
+
+
+    </div>
+
+</body>
+
+</html>
